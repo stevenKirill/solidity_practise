@@ -1,0 +1,29 @@
+/ - главная страница. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4081-43855&t=hOBJAGYkqNSBfruQ-0
+/login - страница логина. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=3695-24486&t=hOBJAGYkqNSBfruQ-0
+/registration страница регистрации. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2382-16370&t=hOBJAGYkqNSBfruQ-0
+/forgot-password страница забыл пароль. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2382-16461&t=hOBJAGYkqNSBfruQ-0
+/qr-login страница входа по qr code. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2719-13129&t=hOBJAGYkqNSBfruQ-0
+/chats страница чатов. Макет:  https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=3729-27988&t=hOBJAGYkqNSBfruQ-0
+/chats?id=${receiverId} страница чата с каким то другим человеком. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=3593-23647&t=hOBJAGYkqNSBfruQ-0
+/stream/create - страница создания стрима. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=5870-56581&t=hOBJAGYkqNSBfruQ-0
+/broadcasts - страница списка стримов/ прямых эфиров. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=5795-67880&t=hOBJAGYkqNSBfruQ-0
+/stream/${nickname} - страница просмотра стрима пользователя. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=5465-48828&t=hOBJAGYkqNSBfruQ-0
+/live-broadcast/${nickname} - страница просмотра прямого эфира пользоваиеля. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=5857-49205&t=hOBJAGYkqNSBfruQ-0
+/search - страница поиска. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2957-23338&t=hOBJAGYkqNSBfruQ-0
+/notifications - страница уведомлений. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=8456-46647&t=hOBJAGYkqNSBfruQ-0
+/add-video - Страница добавленя видео. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2957-19745&t=hOBJAGYkqNSBfruQ-0
+/video/${videoId} - Страница ленты видео главная лента. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4081-43855&t=hOBJAGYkqNSBfruQ-0
+/edit/video/${videoId} - Страница редактирования видео. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2957-20112&t=hOBJAGYkqNSBfruQ-0
+/user/${nickname} - Страница пользователя, профиль. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2815-25706&t=hOBJAGYkqNSBfruQ-0
+/user/${nickname}/subscribers Страница подписчиков пользователя. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=3170-22867&t=hOBJAGYkqNSBfruQ-0
+/user/${nickname}/subscribers?init=subscriptions Страница подписок пользователя. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=3170-22867&t=hOBJAGYkqNSBfruQ-0
+/user/${nickname}/video/${videoId} - лента видео конкретного пользователя. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4081-43855&t=hOBJAGYkqNSBfruQ-0
+/edit/user - страница редактирования пользователя. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2813-15506&t=hOBJAGYkqNSBfruQ-0
+/share - страница моего qr кода чтобы поделиться профилем. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=2824-29877&t=hOBJAGYkqNSBfruQ-0
+/wallet - страница кошелька. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4978-34306&t=hOBJAGYkqNSBfruQ-0
+/wallet/history?filter=user_activity Страница кошелька история транзакций. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4902-27749&t=hOBJAGYkqNSBfruQ-0
+/wallet/activity - страница твоя активность. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4902-28037&t=hOBJAGYkqNSBfruQ-0
+/wallet/referrals - страница моих рефералов. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=4902-28325&t=hOBJAGYkqNSBfruQ-0
+/wallet/about - страница кошелек описание наград. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=5035-34743&t=hOBJAGYkqNSBfruQ-0
+/wallet/content-activity - страница кошелек общая статистика по видео. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=8545-57265&t=hOBJAGYkqNSBfruQ-0
+/wallet/content-activity/${videoId} - страница кошелек статистика по видео. Макет: https://www.figma.com/design/XJgK7S1RW3vnYZwFSEpmHS/Zhabby?node-id=8545-58309&t=hOBJAGYkqNSBfruQ-0
