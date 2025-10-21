@@ -59,7 +59,7 @@ contract StakableToken is ERC20, Ownable {
             to: _to,
             amount: _amount,
             timestamp: block.timestamp,
-            transactionType: "transfer",
+            transactionType: "transfer"
         });
         transactionHistory[msg.sender].push(newTransaction);
         emit TransactionRecorded(msg.sender, "transfer");
@@ -76,7 +76,7 @@ contract StakableToken is ERC20, Ownable {
             to: _to,
             amount: _amount,
             timestamp: block.timestamp,
-            transactionType: "transfer",
+            transactionType: "transfer"
         });
         transactionHistory[msg.sender].push(newTransaction);
         emit TransactionRecorded(_from, "transfer");
@@ -85,8 +85,8 @@ contract StakableToken is ERC20, Ownable {
     
     /**
      * @dev Функция стейкинга токенов
-     * @param amount Количество токенов для стейкинга
-     * @param duration Продолжительность стейкинга в секундах
+     * @param _amount Количество токенов для стейкинга
+     * @param _duration Продолжительность стейкинга в секундах
      */
     function stake(uint256 _amount, uint256 _duration) external {
         // TODO: Проверить минимальную продолжительность
@@ -97,7 +97,7 @@ contract StakableToken is ERC20, Ownable {
         Stake memory newStake = Stake({
             amount: _amount,
             since: block.timestamp,
-            unlockTime: block.timestamp + _duration,
+            unlockTime: block.timestamp + _duration
         });
         // TODO: Заблокировать токены
         bool ok = super.transferFrom(msg.sender, address(this), _amount);
@@ -110,7 +110,7 @@ contract StakableToken is ERC20, Ownable {
             to: address(this),
             amount: _amount,
             timestamp: block.timestamp,
-            transactionType: "stake",
+            transactionType: "stake"
         });
         transactionHistory[msg.sender].push(newTransaction);
         // TODO: Вызвать событие
@@ -119,7 +119,7 @@ contract StakableToken is ERC20, Ownable {
     
     /**
      * @dev Функция расчета вознаграждения
-     * @param account Адрес аккаунта для расчета
+     * @param _account Адрес аккаунта для расчета
      * @return Сумма вознаграждения
      */
     function calculateReward(address _account) public view returns (uint256) {
@@ -136,7 +136,7 @@ contract StakableToken is ERC20, Ownable {
         uint256 SECONDS_PER_YEAR = 365 days;
 
         // Чтобы избежать потерь при делении, умножаем по порядку и делим в конце:
-        uint256 reward = (s.amount * rewardRateBps * elapsed) / (10000 * SECONDS_PER_YEAR);
+        uint256 reward = (s.amount * elapsed) / (10000 * SECONDS_PER_YEAR);
 
         return reward;
     }
@@ -153,7 +153,7 @@ contract StakableToken is ERC20, Ownable {
         // TODO: Рассчитать вознаграждение
         uint256 reward = calculateReward(msg.sender);
         // TODO: Разблокировать токены и начислить вознаграждение
-        _transfer(address(this), msg.sender, amount);
+        _transfer(address(this), msg.sender, currentStake.amount);
         // TODO: Очистить данные стейка
         delete stakes[msg.sender];
         delete blockStakes[msg.sender];
@@ -163,16 +163,16 @@ contract StakableToken is ERC20, Ownable {
             to: msg.sender,
             amount: reward,
             timestamp: block.timestamp,
-            transactionType: "unstake",
+            transactionType: "unstake"
         });
         transactionHistory[msg.sender].push(newTransaction);
         // TODO: Вызвать события
-        emit event Unstaked(msg.sender,reward);
+        emit Unstaked(msg.sender,reward);
     }
     
     /**
      * @dev Функция для получения истории транзакций пользователя
-     * @param account Адрес аккаунта
+     * @param _account Адрес аккаунта
      * @return Массив транзакций пользователя
      */
     function getTransactionHistory(address _account) external view returns (Transaction[] memory) {
