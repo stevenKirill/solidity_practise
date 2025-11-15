@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "npx hardhat test"
+    "test": "npx hardhat test",
+    "build": "npx hardhat compile",
+    "deploy:strings": "npx hardhat run ./scripts/deploy-strings.ts --network hardhatOp"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-ignition": "^3.0.3",

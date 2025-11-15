@@ -1,4 +1,5 @@
-Типы данных (uint, string, address, bool)
+# Типы данных (uint, string, address, bool)
+
 Переменные состояния vs локальные переменные
 Модификаторы видимости (public, private, internal, external)
 Модификаторы функций (view, pure, payable)

@@ -11,7 +11,7 @@ async function main() {
   });
 
   const publicClient = await viem.getPublicClient();
-  const [deployer, firstClient, secondClient] = await viem.getWalletClients();
+  const [deployer, firstClient, _secondClient] = await viem.getWalletClients();
 
   const deployTransactionHash = await deployer.deployContract({
     abi: artifact.abi,
