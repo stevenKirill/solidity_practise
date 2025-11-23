@@ -11,7 +11,7 @@ async function main() {
 
   const publicClient = await viem.getPublicClient();
   const [deployer, firstClient, _secondClient] = await viem.getWalletClients();
-  
+
   const deployTransactionHash = await deployer.deployContract({
     abi: artifact.abi,
     bytecode: artifact.bytecode,
@@ -20,7 +20,7 @@ async function main() {
   const deployReceipt = await publicClient.waitForTransactionReceipt({
     hash: deployTransactionHash,
   });
-  
+
   const contractAddress = deployReceipt.contractAddress;
 
   if (!contractAddress) {
@@ -38,7 +38,7 @@ async function main() {
     hash: setFirstStringHash,
   });
 
-  console.log('setFirstStringReceipt', setFirstStringReceipt);
+  console.log("setFirstStringReceipt", setFirstStringReceipt);
 
   const setSecondStringHash = await firstClient.writeContract({
     abi: artifact.abi,
@@ -51,8 +51,8 @@ async function main() {
     hash: setSecondStringHash,
   });
 
-  console.log('setSecondStringReceipt', setSecondStringReceipt);
-  
+  console.log("setSecondStringReceipt", setSecondStringReceipt);
+
   const getStringZeroIndex = await publicClient.readContract({
     abi: artifact.abi,
     address: contractAddress,
@@ -60,7 +60,7 @@ async function main() {
     args: [0n],
   });
 
-  console.log('getStringZeroIndex', getStringZeroIndex);
+  console.log("getStringZeroIndex", getStringZeroIndex);
 
   const getStringOneIndex = await publicClient.readContract({
     abi: artifact.abi,
@@ -69,7 +69,7 @@ async function main() {
     args: [1n],
   });
 
-  console.log('getStringOneIndex', getStringOneIndex);
+  console.log("getStringOneIndex", getStringOneIndex);
 }
 
 main().catch((error) => {

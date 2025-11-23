@@ -15,7 +15,11 @@ contract Certificate {
     }
 
     // Events
-    event CertificateIssued(uint256 indexed id, address indexed owner, string title);
+    event CertificateIssued(
+        uint256 indexed id,
+        address indexed owner,
+        string title
+    );
     event CertificateRevoked(uint256 indexed id, address indexed revokedBy);
     event CertificateRestored(uint256 indexed id);
     event CertificateExpired(uint256 indexed id);
@@ -73,20 +77,24 @@ contract Certificate {
             expirationDate: _expirationDate,
             isRevoked: false
         });
-        
+
         userCertificates[_owner].push(newCertificate);
         allCertificates[nextId] = newCertificate;
-        
+
         emit CertificateIssued(nextId, _owner, _title);
-        
+
         nextId++;
     }
 
-    function getCertificate(uint256 _id) public view returns (CertificateData memory) {
+    function getCertificate(
+        uint256 _id
+    ) public view returns (CertificateData memory) {
         return allCertificates[_id];
     }
 
-    function getAllUserCertificates(address _owner) public view returns (CertificateData[] memory) {
+    function getAllUserCertificates(
+        address _owner
+    ) public view returns (CertificateData[] memory) {
         return userCertificates[_owner];
     }
 
@@ -94,7 +102,9 @@ contract Certificate {
         return nextId - 1;
     }
 
-    function verifyCertificate(uint256 _id)
+    function verifyCertificate(
+        uint256 _id
+    )
         public
         view
         checkCertificateExists(_id)
@@ -108,12 +118,12 @@ contract Certificate {
     function isValid(uint256 _id) public view returns (bool) {
         if (allCertificates[_id].id == 0) return false;
         if (allCertificates[_id].isRevoked) return false;
-        
+
         uint256 expiration = allCertificates[_id].expirationDate;
         if (expiration != 0 && expiration <= block.timestamp) {
             return false;
         }
-        
+
         return true;
     }
 
@@ -123,43 +133,51 @@ contract Certificate {
         return expiration <= block.timestamp;
     }
 
-    function revokeCertificate(uint256 _id) public onlyOwner checkCertificateExists(_id) {
+    function revokeCertificate(
+        uint256 _id
+    ) public onlyOwner checkCertificateExists(_id) {
         require(!allCertificates[_id].isRevoked, "Certificate already revoked");
-        
+
         // Обновляем в основном mapping
         allCertificates[_id].isRevoked = true;
-        
+
         // Обновляем в массиве пользователя (storage)
         address certificateOwner = allCertificates[_id].owner;
-        CertificateData[] storage userCerts = userCertificates[certificateOwner];
-        
+        CertificateData[] storage userCerts = userCertificates[
+            certificateOwner
+        ];
+
         for (uint256 i = 0; i < userCerts.length; i++) {
             if (userCerts[i].id == _id) {
                 userCerts[i].isRevoked = true;
                 break;
             }
         }
-        
+
         emit CertificateRevoked(_id, msg.sender);
     }
 
-    function unrevokeCertificate(uint256 _id) public onlyOwner checkCertificateExists(_id) {
+    function unrevokeCertificate(
+        uint256 _id
+    ) public onlyOwner checkCertificateExists(_id) {
         require(allCertificates[_id].isRevoked, "Certificate not revoked");
-        
+
         // Обновляем в основном mapping
         allCertificates[_id].isRevoked = false;
-        
+
         // Обновляем в массиве пользователя (storage)
         address certificateOwner = allCertificates[_id].owner;
-        CertificateData[] storage userCerts = userCertificates[certificateOwner];
-        
+        CertificateData[] storage userCerts = userCertificates[
+            certificateOwner
+        ];
+
         for (uint256 i = 0; i < userCerts.length; i++) {
             if (userCerts[i].id == _id) {
                 userCerts[i].isRevoked = false;
                 break;
             }
         }
-        
+
         emit CertificateRestored(_id);
     }
 

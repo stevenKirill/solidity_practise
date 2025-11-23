@@ -104,13 +104,18 @@ contract Voting {
         _;
     }
 
-        modifier votingIsActive() {
-        require(votingStartTime > 0 && votingEndTime > 0, "Voting period not set");
-        require(block.timestamp >= votingStartTime, "Voting has not started yet");
+    modifier votingIsActive() {
+        require(
+            votingStartTime > 0 && votingEndTime > 0,
+            "Voting period not set"
+        );
+        require(
+            block.timestamp >= votingStartTime,
+            "Voting has not started yet"
+        );
         require(block.timestamp <= votingEndTime, "Voting has ended");
         _;
     }
-    
 
     event AddedCandidate(string name, uint256 votes, uint256 id);
     event RemoveCandidate(uint256 id);
@@ -139,23 +144,29 @@ contract Voting {
     }
 
     function registerVoter(string calldata _name) public registered {
-        voters[msg.sender] = Voter({ name: _name, hasVoted: false, exists: true });
+        voters[msg.sender] = Voter({
+            name: _name,
+            hasVoted: false,
+            exists: true
+        });
         emit RegisterVoter(msg.sender, _name);
     }
 
-    function vote(uint _candidateId) public hasNotVoted isActiveCandidate(_candidateId) {
+    function vote(
+        uint _candidateId
+    ) public hasNotVoted isActiveCandidate(_candidateId) {
         candidates[_candidateId].votes += 1;
         voters[msg.sender].hasVoted = true;
     }
 
-    function getCandidateVotes(uint256 _id) public view returns(uint256) {
+    function getCandidateVotes(uint256 _id) public view returns (uint256) {
         return candidates[_id].votes;
     }
 
-    function getWinners() public onlyOwner view returns(uint256[] memory) {
+    function getWinners() public view onlyOwner returns (uint256[] memory) {
         uint max = 0;
         uint winnerCount = 0;
-        for(uint256 i = 0; i < candidates.length; i++) {
+        for (uint256 i = 0; i < candidates.length; i++) {
             if (candidates[i].votes > max) {
                 max = candidates[i].votes;
                 winnerCount = 1;
@@ -166,7 +177,7 @@ contract Voting {
 
         uint256[] memory winners = new uint256[](winnerCount);
         uint256 winnerIndex = 0;
-        for(uint256 i = 0; i < candidates.length; i++) {
+        for (uint256 i = 0; i < candidates.length; i++) {
             if (candidates[i].votes == max) {
                 winners[winnerIndex] = candidates[i].id;
                 winnerIndex++;
@@ -175,24 +186,30 @@ contract Voting {
         return winners;
     }
 
-        // Функция для установки временного периода голосования
-    function setVotingPeriod(uint256 _startTime, uint256 _endTime) external onlyOwner {
+    // Функция для установки временного периода голосования
+    function setVotingPeriod(
+        uint256 _startTime,
+        uint256 _endTime
+    ) external onlyOwner {
         require(_endTime > _startTime, "End time must be after start time");
-        
+
         // Если голосование уже началось, мы не можем его изменить
         if (votingStartTime > 0 && block.timestamp >= votingStartTime) {
-            require(block.timestamp < votingEndTime, "Cannot modify active or completed voting");
+            require(
+                block.timestamp < votingEndTime,
+                "Cannot modify active or completed voting"
+            );
         }
-        
+
         // Если _startTime в прошлом, устанавливаем текущее время
         if (_startTime < block.timestamp) {
             votingStartTime = block.timestamp;
         } else {
             votingStartTime = _startTime;
         }
-        
+
         votingEndTime = _endTime;
-        
+
         emit VotingPeriodSet(votingStartTime, votingEndTime);
     }
 
@@ -202,7 +219,10 @@ contract Voting {
             return "Not scheduled";
         } else if (block.timestamp < votingStartTime) {
             return "Scheduled but not started";
-        } else if (block.timestamp >= votingStartTime && block.timestamp <= votingEndTime) {
+        } else if (
+            block.timestamp >= votingStartTime &&
+            block.timestamp <= votingEndTime
+        ) {
             return "Active";
         } else {
             return "Completed";
